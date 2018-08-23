@@ -20,6 +20,6 @@ export TPZ_PASSWORD=
 ./submitter.sh
 ```
 
-[Submitter HOWTO / Tutorial](https://github.com/riebling/acai/blob/master/submitter.HOWTO.md)
+[11-791 Submitter HOWTO / Tutorial](https://github.com/riebling/acai/blob/master/submitter.HOWTO.md)
 
 ### Grader
