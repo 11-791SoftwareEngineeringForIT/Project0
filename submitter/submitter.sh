@@ -22,11 +22,13 @@ configuration() {
 
     # Module / task specific fields
     # Task Id and TPZ key from https://theproject.zone/f18-11791/pi0/tasks/hello-world
-    semester="f18"
-    courseId="11791"
-    projectId="pi0"
-    taskId="hello-world"
-    tpz_key="KMZL8VGavxwtkXp1DrsjLEKXfoOBuhGJ"
+    semester="f18"                              # part of TPZ project URL  e.g. "f18-11791"
+    courseId="11791"                            # part of TPZ project URL  e.g. "f18-11791"
+    projectId="pi0"                             # created at "Create New Project" time in TPZ
+                                                # "Create Project" pop-up: "Project identifier" field
+    taskId="hello-world"                        # the same as "Slug" in the Edit Task pop-up
+                                                # created at "Create New Task" pop-up "Module slug" field
+    tpz_key="KMZL8VGavxwtkXp1DrsjLEKXfoOBuhGJ"  # "Secret key" in the Edit Task pop-up
 }
 
 ################################################################################
@@ -58,7 +60,9 @@ submit_to_tpz_ags() {
         exit
     else
         # the code can also reaches here with submission failure due to a existing pending submission
-        echo "If your submission is uploaded successfully. Log in to theproject.zone and open the submissions table to see how you did!"
+        echo "If your submission is uploaded successfully, log in to theproject.zone and open the submissions table at"
+        echo "https://theproject.zone/"$semester"-"$courseId"/"$projectId"/submissions"
+        echo " to see how you did!"
     fi
 
     rm -rf "$andrewId".tar.gz
@@ -69,6 +73,9 @@ submit_to_tpz_ags() {
 ################################################################################
 grade() {
     echo "TODO!"
+
+    # return ??? if ???
+    return TRUE;
 }
 
 ################################################################################
@@ -88,7 +95,7 @@ while getopts ":ha:" opt; do
       echo "This program is used to submit and grade your solutions. Usage:" >&2
       echo "export HISTIGNORE=\"export*\" # so that the following export commands will not be tracked into bash history" >&2
       echo "export TPZ_USERNAME=\"your_gmail_address\"" >&2
-      echo "export TPZ_PASSWORD=\"your_tpz_pwd\"" >&2
+      echo "export TPZ_PASSWORD=\"tpz_submission_pwd\"" >&2
       echo "./submitter" >&2
       exit
     ;;
@@ -101,7 +108,9 @@ done
 
 
 # This submitter requires TPZ_USERNAME and TPZ_PASSWORD to be set in the environment
-#    before students can run ./submitter to make a submission
+#    before students can run ./submitter.sh to make a submission
+#
+# is gmail required, or are andrew emails OK?
 if [[ -z "${TPZ_USERNAME}" ]]; then
   echo "Please set TPZ_USERNAME as your gmail address first with the command:"
   echo "export TPZ_USERNAME=\"value\""
