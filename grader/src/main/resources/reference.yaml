@@ -1,0 +1,33 @@
+# Supported answer types:
+# String Int Decimal Range Regex Json
+#
+# code attribute:
+# double-quoted style (\ and " must be escaped by \,
+# newlines can be inserted with a literal \n sequence,
+# lines can be concatenated without spaces with trailing \)
+# trailing spaces are ignored, can be used freely as indentation
+#
+# answer/secret attribute with JSON/CSV:
+# single-quoted style (literal ' must be escaped to doubled '', no special characters)
+# trailing spaces are ignored, can be used freely as indentation
+# \n is needed as newline
+---
+metadata:
+  secret_data: False
+  student_output: "output.json"
+questions:
+- id: q1
+  type: Int
+  answer: 28252
+  score: 5
+  scoreType: Number
+- id: q2
+  type: Int
+  answer: 966
+  score: 5
+  scoreType: Number
+- id: q3
+  type: String
+  answer: Cloud
+  score: 5
+  scoreType: Number
