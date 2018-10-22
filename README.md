@@ -36,15 +36,27 @@ export TPZ_PASSWORD=
 
 #### Build and Deploy
 * Before building the package you will need to install the [grader-utils](https://github.com/CloudComputingCourse/grader-utils/wiki/Library-Usage) and [upload-grader-maven-plugin](https://github.com/CloudComputingCourse/CloudComputingUtils/wiki/Plugin-Usage) packages.
-* How? What steps to follow to install such things, where do they end up?
+* How? What steps to follow to install such things, where do they end up? read on...
 * Before that happens, you will need to install Maven and Java.
+* Steps to install packages (or are they plugins, or are they projects, or archives, or libraries?)
+  - Follow the link to the package page
+  - Follow another link to a page with download links
+  - Download `grader-utils-1.3.3-RELEASE.jar`, `grader-utils-1.3.3-RELEASE-sources.jar`, `grader-utils-1.3.3-RELEASE-javadoc.jar`, and `upload-grader-maven-plugin-0.0.6-RELEASE.jar` after navigating to them from the linked pages above. You will probably only be able to download them by first authenticating to the linked GitHub repositories in a browser.
+  - Because of this, probably copy the four downloaded jar files to your working directory
+  - Perform the the `mvn install` commands, as hinted in the linked pages, e.g:
+  ```
+  mvn install:install-file    -Dfile=grader-utils-"$version"-RELEASE.jar    -DgroupId=edu.cmu.scs.cc.grader    -DartifactId=grader-utils    -Dversion="$version"-RELEASE    -Dpackaging=jar
+  mvn install:install-file    -Dfile=grader-utils-"$version"-RELEASE-sources.jar    -DgroupId=edu.cmu.scs.cc.grader    -DartifactId=grader-utils    -Dversion="$version"-RELEASE    -Dpackaging=jar    -Dclassifier=sources
+  mvn install:install-file    -Dfile=grader-utils-"$version"-RELEASE-javadoc.jar    -DgroupId=edu.cmu.scs.cc.grader    -DartifactId=grader-utils    -Dversion="$version"-RELEASE    -Dpackaging=jar    -Dclassifier=javadoc
+  mvn install:install-file       -Dfile=upload-grader-maven-plugin-0.0.6-RELEASE.jar       -DgroupId=edu.cmu.cs.cloud.plugins       -DartifactId=upload-grader-maven-plugin       -Dversion=0.0.6-RELEASE       -Dpackaging=jar
+  ```
 
 ```bash
 $ cd grader
 
 $ mvn clean package
 ```
-produces:
+Before deleting the 'example' ~/.m2/settings.xml, it produced:
 ```[INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
@@ -67,10 +79,114 @@ Downloading: http://repo1.theproject.zone/artifactory/libs-release/org/apache/ma
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
 ```
+Instead, if it works, will start with:
+```
+[INFO] Building project0-grader 1.0-SNAPSHOT
+```
+and after pages and pages of downloads, end with:
+```
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 10.597 s
+[INFO] Finished at: 2018-10-22T15:57:20-04:00
+[INFO] Final Memory: 26M/381M
+[INFO] ------------------------------------------------------------------------
+```
 then ...
 ```
 $ mvn upload-grader:upload \
     -Dupload.andrewId=<ANDREW_ID> \
     -Dupload.password=<TPZ_SUBMISSION_PASSWORD> \
     -Dupload.filename=target/java_grader.jar
+```
+resulted in:
+```
+er1k@islpc22:~/ACAI/Project0/grader$ mvn upload-grader:upload -e -Dupload.andrewId=er1k@cs.cmu.edu -Dupload.password=H6CmXQOGRc34zRY\
+yKzIa9y -Dupload.filename=target/java_grader.jar
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building project0-grader 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- upload-grader-maven-plugin:0.0.6-RELEASE:upload (default-cli) @ project0-grader ---
+[INFO] Configuration:   UploadGraderMojo{project=MavenProject: edu.cmu.scs.cs._11791:project0-grader:1.0-SNAPSHOT @ /usr1/er1k/ACAI/\
+Project0/grader/pom.xml, taskId=hello-world, semester=f18, courseId=11791, andrewId=er1k@cs.cmu.edu, password=H6CmXQOGRc34zRYyKzIa9y\
+, filename=/usr1/er1k/ACAI/Project0/grader/target/java_grader.jar}
+[INFO] File to upload:  /usr1/er1k/ACAI/Project0/grader/target/java_grader.jar
+edu.cmu.cs.cloud.ags.producer.v2.client.ApiException: 
+        at edu.cmu.cs.cloud.ags.producer.v2.client.ApiClient.handleResponse(ApiClient.java:925)
+        at edu.cmu.cs.cloud.ags.producer.v2.client.ApiClient.execute(ApiClient.java:841)
+        at edu.cmu.cs.cloud.ags.producer.v2.client.api.UploadGraderApi.uploadGraderWithHttpInfo(UploadGraderApi.java:206)
+        at edu.cmu.cs.cloud.ags.producer.v2.client.api.UploadGraderApi.uploadGrader(UploadGraderApi.java:186)
+        at edu.cmu.cs.cloud.plugins.upload.UploadGraderMojo.execute(UploadGraderMojo.java:50)
+        at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
+        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
+        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+        at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
+        at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
+        at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
+        at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
+        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
+        at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
+        at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
+        at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
+        at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+        at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+        at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+        at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.299 s
+[INFO] Finished at: 2018-10-22T16:34:01-04:00
+[INFO] Final Memory: 9M/186M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal edu.cmu.cs.cloud.plugins:upload-grader-maven-plugin:0.0.6-RELEASE:upload (default-cli) on project pro\
+ject0-grader: HTTP related error. HTTP related error.
+[ERROR] Error during uploading grader to AGS. Check required parameters.
+[ERROR] -> [Help 1]
+org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal edu.cmu.cs.cloud.plugins:upload-grader-maven-plugin:0\
+.0.6-RELEASE:upload (default-cli) on project project0-grader: HTTP related error.
+        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
+        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+        at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
+        at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
+        at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
+        at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
+        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
+        at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
+        at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
+        at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
+        at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+        at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+        at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+        at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+Caused by: org.apache.maven.plugin.MojoExecutionException: HTTP related error.
+        at edu.cmu.cs.cloud.plugins.upload.UploadGraderMojo.execute(UploadGraderMojo.java:60)
+        at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
+        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
+        ... 20 more
+[ERROR]
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
 ```
