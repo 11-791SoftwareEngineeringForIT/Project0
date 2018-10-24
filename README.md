@@ -100,10 +100,10 @@ $ mvn upload-grader:upload \
     -Dupload.password=<TPZ_SUBMISSION_PASSWORD> \
     -Dupload.filename=target/java_grader.jar
 ```
-resulted in:
+if successful, results in:
 ```
-er1k@islpc22:~/ACAI/Project0/grader$ mvn upload-grader:upload -e -Dupload.andrewId=er1k@cs.cmu.edu -Dupload.password=H6CmXQOGRc34zRY\
-yKzIa9y -Dupload.filename=target/java_grader.jar
+er1k@islpc22:~/ACAI/Project0/grader$ mvn upload-grader:upload -e -Dupload.andrewId=er1k@andrew.cmu.edu -Dupload.password=H6CmXQOGRc3\
+4zRYyKzIa9y -Dupload.filename=target/java_grader.jar
 [INFO] Error stacktraces are turned on.
 [INFO] Scanning for projects...
 [INFO]
@@ -113,80 +113,22 @@ yKzIa9y -Dupload.filename=target/java_grader.jar
 [INFO]
 [INFO] --- upload-grader-maven-plugin:0.0.6-RELEASE:upload (default-cli) @ project0-grader ---
 [INFO] Configuration:   UploadGraderMojo{project=MavenProject: edu.cmu.scs.cs._11791:project0-grader:1.0-SNAPSHOT @ /usr1/er1k/ACAI/\
-Project0/grader/pom.xml, taskId=hello-world, semester=f18, courseId=11791, andrewId=er1k@cs.cmu.edu, password=H6CmXQOGRc34zRYyKzIa9y\
-, filename=/usr1/er1k/ACAI/Project0/grader/target/java_grader.jar}
+Project0/grader/pom.xml, taskId=hello-world, semester=f18, courseId=11791, andrewId=er1k@andrew.cmu.edu, password=H6CmXQOGRc34zRYyKz\
+Ia9y, filename=/usr1/er1k/ACAI/Project0/grader/target/java_grader.jar}
 [INFO] File to upload:  /usr1/er1k/ACAI/Project0/grader/target/java_grader.jar
-edu.cmu.cs.cloud.ags.producer.v2.client.ApiException: 
-        at edu.cmu.cs.cloud.ags.producer.v2.client.ApiClient.handleResponse(ApiClient.java:925)
-        at edu.cmu.cs.cloud.ags.producer.v2.client.ApiClient.execute(ApiClient.java:841)
-        at edu.cmu.cs.cloud.ags.producer.v2.client.api.UploadGraderApi.uploadGraderWithHttpInfo(UploadGraderApi.java:206)
-        at edu.cmu.cs.cloud.ags.producer.v2.client.api.UploadGraderApi.uploadGrader(UploadGraderApi.java:186)
-        at edu.cmu.cs.cloud.plugins.upload.UploadGraderMojo.execute(UploadGraderMojo.java:50)
-        at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
-        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
-        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
-        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
-        at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
-        at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
-        at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
-        at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
-        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
-        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
-        at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
-        at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
-        at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
-        at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
-        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-        at java.lang.reflect.Method.invoke(Method.java:498)
-        at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
-        at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
-        at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
-        at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+[INFO] Upload response:
+[INFO] class UploadReply {
+    status: 1200
+    success: true
+    message: File upload successfully! Please wait 5 minutes for AGS to sync the latest files. Successfully uploaded file from clien\
+t: java_grader.jar
+}
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 2.299 s
-[INFO] Finished at: 2018-10-22T16:34:01-04:00
+[INFO] Total time: 3.155 s
+[INFO] Finished at: 2018-10-23T14:00:25-04:00
 [INFO] Final Memory: 9M/186M
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal edu.cmu.cs.cloud.plugins:upload-grader-maven-plugin:0.0.6-RELEASE:upload (default-cli) on project pro\
-ject0-grader: HTTP related error. HTTP related error.
-[ERROR] Error during uploading grader to AGS. Check required parameters.
-[ERROR] -> [Help 1]
-org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal edu.cmu.cs.cloud.plugins:upload-grader-maven-plugin:0\
-.0.6-RELEASE:upload (default-cli) on project project0-grader: HTTP related error.
-        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
-        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
-        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
-        at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
-        at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
-        at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
-        at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
-        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
-        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
-        at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
-        at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
-        at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
-        at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
-        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-        at java.lang.reflect.Method.invoke(Method.java:498)
-        at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
-        at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
-        at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
-        at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
-Caused by: org.apache.maven.plugin.MojoExecutionException: HTTP related error.
-        at edu.cmu.cs.cloud.plugins.upload.UploadGraderMojo.execute(UploadGraderMojo.java:60)
-        at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
-        at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
-        ... 20 more
-[ERROR]
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR]
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
-
 ```
+Now what's confusing to me is: in spite of this message, nothing has appeared on the TPZ page for this upload.
