@@ -34,6 +34,10 @@ export TPZ_PASSWORD=
   * In this example, we will read the `output.json` included in the student's submission. The [submitter.sh](submitter/submitter.sh) in this example project will create a submission that includes [output.json](submitter/output.json), which will result in a full score during grading.
   * [reference.yaml](grader/src/main/resources/reference.yaml) has three question (`q1` - `q3`) each worth 5 points. The id `q1` - `q3` corresponds to the column name in the [hello-world](https://theproject.zone/f18-11791/pi0/tasks/hello-world) TPZ task.
 
+#### Results page
+For this project the TPZ page showing submission results:
+  https://theproject.zone/f18-11791/pi0/submissions
+  
 #### Build and Deploy
 * Before building the package you will need to install the [grader-utils](https://github.com/CloudComputingCourse/grader-utils/wiki/Library-Usage) and [upload-grader-maven-plugin](https://github.com/CloudComputingCourse/CloudComputingUtils/wiki/Plugin-Usage) packages.
 * How? What steps to follow to install such things, where do they end up? read on...
