@@ -132,3 +132,15 @@ t: java_grader.jar
 [INFO] ------------------------------------------------------------------------
 ```
 Now what's confusing to me is: in spite of this message, nothing has appeared on the TPZ page for this upload.
+
+NOTES from Cameron:
+
+I've added a grader for the `hello-world` task and updated the submitter so that when you create a submission it will result in a full score on TPZ submissions page
+
+Could you review this pull request and ask about anything that is not clear (I'll add those notes to the README too) https://github.com/11-791SoftwareEngineeringForIT/Project0/pull/1
+
+The 404 are due to permissions; you should have access to these pages now (if there are other repos you don't have access to please let me know):
+https://github.com/CloudComputingCourse/grader-utils/wiki/Library-Usage
+https://github.com/CloudComputingCourse/CloudComputingUtils/wiki/Plugin-Usage
+
+
