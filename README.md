@@ -34,6 +34,10 @@ export TPZ_PASSWORD=
   * In this example, we will read the `output.json` included in the student's submission. The [submitter.sh](submitter/submitter.sh) in this example project will create a submission that includes [output.json](submitter/output.json), which will result in a full score during grading.
   * [reference.yaml](grader/src/main/resources/reference.yaml) has three question (`q1` - `q3`) each worth 5 points. The id `q1` - `q3` corresponds to the column name in the [hello-world](https://theproject.zone/f18-11791/pi0/tasks/hello-world) TPZ task.
 
+### Submitter
+
+It turns out you have to Upload the Grader with an upload-grader-maven-plugin first. ("Uploader"), THEN you submit homeworks (or students do) with the Submitter. Assuming the Grader uploaded correctly AND WORKS (big if), the result of running Submitter will be a new entry in the Submissions results page referenced below
+
 #### Results page
 For this project the TPZ page showing submission results:
   https://theproject.zone/f18-11791/pi0/submissions
