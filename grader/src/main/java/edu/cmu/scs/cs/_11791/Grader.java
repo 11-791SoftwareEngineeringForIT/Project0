@@ -25,6 +25,8 @@ public class Grader {
         Config config = new Config(args);
 
         // create 1 or more GradeStrategy instance(s)
+	// This file is located in grader/src/main/resources/reference.yaml
+	// not sure where it resides "at runtime"
         JsonGradeStrategy jsonGradeStrategy =
                 new JsonGradeStrategy(config, "/reference.yaml");
 

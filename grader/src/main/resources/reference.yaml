@@ -28,6 +28,6 @@ questions:
   scoreType: Number
 - id: q3
   type: String
-  answer: Cloud
+  answer: "A very much longer string with lots and lots of words in it\nA second line of text after the newline"
   score: 5
   scoreType: Number
