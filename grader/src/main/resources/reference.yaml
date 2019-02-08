@@ -16,17 +16,7 @@ metadata:
   secret_data: False
   student_output: "output.json"
 questions:
-- id: q1
-  type: Int
-  answer: 28252
-  score: 5
-  scoreType: Number
-- id: q2
-  type: Int
-  answer: 966
-  score: 5
-  scoreType: Number
-- id: q3
+- id: q4
   type: String
   answer: "A very much longer string with lots and lots of words in it\nA second line of text after the newline"
   score: 5
