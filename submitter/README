@@ -1,0 +1,5 @@
+This folder is where you run the Submitter, which submits a Task (homework) to TPZ.
+It contains code submitter.sh which may get compiled into binary 'submitter' for
+students (to hide what it does)
+
+It creates a file submission
